@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Kegiatan Hari ini</p>
-                                    <h3 class="title">1 agenda</h3>
+                                    <h3 class="title">{{$todayAgenda}} agenda</h3>
                                 </div>                                
                             </div>                            
                         </div>                    
@@ -61,7 +61,7 @@
                                     <div class="ct-chart" id="emailsSubscriptionChart"></div>
                                 </div>
                                 <div class="card-content">
-                                    <h4 class="title">Kegiatan Bulan Ini</h4>
+                                    <h4 class="title">Kegiatan Tahun Ini</h4>
                                     <!-- <p class="category">Last Campaign Performance</p> -->
                                 </div>
                                 <!-- <div class="card-footer">
@@ -88,7 +88,7 @@
                                                 </li>
                                                 @foreach($allRoom as $data)
                                                 <li class="">
-                                                    <a href="#messages" data-toggle="tab">
+                                                    <a href="#{{$data['name']}}" data-toggle="tab">
                                                         <i class="material-icons">place</i> {{ $data['name']}}
                                                         <div class="ripple-container"></div>
                                                     </a>
@@ -112,116 +112,32 @@
                                                                 </label>
                                                             </div>
                                                         </td>
-                                                        <td>{{$data['name']}} ( <b>{{$data['pic']}}</b>/{{$data['contact']}} )</td>                                                        
+                                                        <td>{{$data['name']}} ( <b>{{$data['pic']}}</b>/{{$data['contact']}} )</td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="tab-pane" id="messages">
+                                        @foreach($allRoom as $data)
+                                        <div class="tab-pane" id="{{$data['name']}}">
                                             <table class="table">
                                                 <tbody>
+                                                    @foreach($data->agenda as $agenda)
                                                     <tr>
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes" checked>
+                                                                    <input type="checkbox" name="optionsCheckboxes" checked disabled>
                                                                 </label>
                                                             </div>
                                                         </td>
-                                                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                                        </td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
+                                                        <td>{{$agenda['name']}} ( <b>{{$agenda['pic']}}</b>/{{$agenda['contact']}} )</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="tab-pane" id="settings">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes" checked>
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                                        </td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" name="optionsCheckboxes">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                                        <td class="td-actions text-right">
-                                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -238,8 +154,67 @@
     $(document).ready(function() {
 
         // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
+        // demo.initDashboardPageCharts();
+        displayChart();
 
     });
+
+    function displayChart(){
+        dataDailySalesChart = {
+            labels: ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum\'at', 'Sabtu'],
+            series: [
+                {!! json_encode($agendaOfTheWeek) !!}
+            ]
+        };
+
+        optionsDailySalesChart = {
+            lineSmooth: Chartist.Interpolation.cardinal({
+                tension: 0
+            }),
+            low: 0,
+            high: {{$maxAgendaWeek}},
+            chartPadding: {
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0
+            },
+        }
+
+        var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+        md.startAnimationForLineChart(dailySalesChart);
+
+        var dataEmailsSubscriptionChart = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'],
+            series: [
+                {!! json_encode($agendaOfTheYear) !!}
+
+            ]
+        };
+        var optionsEmailsSubscriptionChart = {
+            axisX: {
+                showGrid: false
+            },
+            low: 0,
+            high: {{$maxAgendaYear}},
+            chartPadding: {
+                top: 0,
+                right: 5,
+                bottom: 0,
+                left: 0
+            }
+        };
+        var responsiveOptions = [
+            ['screen and (max-width: 640px)', {
+                seriesBarDistance: 5,
+                axisX: {
+                    labelInterpolationFnc: function(value) {
+                        return value[0];
+                    }
+                }
+            }]
+        ];
+        var emailsSubscriptionChart = Chartist.Bar('#emailsSubscriptionChart', dataEmailsSubscriptionChart, optionsEmailsSubscriptionChart, responsiveOptions);
+    }
 </script>
 @endsection
