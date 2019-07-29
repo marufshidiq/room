@@ -1,0 +1,152 @@
+table td {
+    border: 0px solid #eee;
+    color: #333;
+}
+table th {
+    font-size: 10pt;
+    margin: 0px;
+    text-align: left;
+}
+table td a {
+    font-size: 18pt;
+}
+table ol li {
+    font-size: 12pt;
+    border-bottom: 1px solid #999;
+    margin: 10px;
+    padding: 10px;
+}
+table ol li a:visited {
+    font-size: 14pt;
+}
+table ol li a:hover {
+    font-size: 14pt;
+    color: blue;
+    text-decoration: underline;
+}
+table ol li a:link {
+    font-size: 14pt;
+    font-family: serif
+}
+table .dikti a:link {
+    font-size: 8pt;
+    text-decoration: underline;
+}
+table .dikti td {
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+
+.description img {
+    height: 50%;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+.description_text {
+    text-align: justify;
+}
+.navbar {
+    margin-bottom: 0px;
+    border: none;
+    background-color: #1A2C43;
+    height: 40px;
+    color: #fff;
+}
+.navbar a {
+    color: #fff !important;
+}
+.navbar a:hover {
+    color: #f0ad4e !important;
+}
+.banner {
+    margin-left: 200px;
+    margin-top: -15px;
+}
+.header {
+    background: no-repeat bottom right url('/images/ugm_gray_bg.png') #073c64;
+    padding: 5px;
+    height: 100px;
+    margin-bottom: 40px;
+}
+.header h1,
+.header h5,
+.header small {
+    color: #fff;
+    margin-left: 5px;
+}
+ol.list-database img {
+    height: 40px;
+}
+ol.list-database li {
+    margin-bottom: 10px;
+    /*border-bottom:1px solid #ccc;*/
+}
+.main-wrapper {
+    position: relative;
+    border-top: 5px solid #1A2C43;
+    background: no-repeat bottom right url('/images/ugm_gray_bg.png') #fff;
+}
+.page-header {
+    border: none;
+}
+.navbar-brand {
+    width: 150px;
+    height: 180px;
+    /* position: absolute; */
+    
+    left: 0;
+    top: -40px;
+    padding: 20px;
+    text-align: center;
+    z-index: 99;
+    background-color: #1A2C43;
+    margin-left: 0px !important;
+}
+.navbar-brand:hover {
+    background-color: #1A2C43 !important;
+}
+.navbar-brand img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#svg-container {
+    /* display: inline-block; */
+	position: relative;
+	width: 100%;
+	/* padding-bottom: 100%;  */
+	vertical-align: middle; 
+    overflow: hidden; 
+    top: 0;
+    left: 0;
+    /* background: #333; */
+}
+
+#svg-container >svg {
+    display: block;
+    /* margin: 10px auto; */
+    margin-bottom: 10px;
+}
+
+#room-container {
+    margin-bottom: 10px;    
+ }
+
+.tag {
+    float: left;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;
+    background-color: #92AD40;
+    padding: 5px;
+    color: #FFFFFF;
+    font-weight: bold;
+ }
+
+ @media screen and (max-width: 736px) {
+    .banner h5 {
+      visibility: hidden;
+    }
+  }
