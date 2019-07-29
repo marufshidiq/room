@@ -44,7 +44,7 @@
                                         @endif
                                     <td>{{$data['key']}}</td>
                                     <td>
-                                    <button type="button" class="btn btn-sm btn-danger"><i class="material-icons">delete</i> Hapus</button>
+                                    <button onclick="deleteRoom({{$data->id}})" type="button" class="btn btn-sm btn-danger"><i class="material-icons">delete</i> Hapus</button>
                                     </td>
                                 </tr>                     
                                 @endforeach       
@@ -106,4 +106,33 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    function deleteRoom(id) {
+        var r = confirm("Apakah anda yakin akan menghapus ruangan ini?");
+        if (r == true) {
+            $.ajax({
+                type: 'POST',
+                url: '{{route('post.delete.room')}}',
+                data: {
+                    id: id,                    
+                },
+                success: function(data) {
+                    location.reload();
+                },
+                error: function(error) {
+                    alert("Error")
+                }
+            });
+        }
+    }
+</script>
 @endsection

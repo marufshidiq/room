@@ -88,7 +88,7 @@
                         <script>
                             document.write(new Date().getFullYear())
                         </script>
-                        <a href="http://www.durenmedia.net">MRFSHDQ</a> made with <3
+                        <a href="https://marufshidiq.github.io">MRFSHDQ</a> made with <3
                     </p>
                 </div>
             </footer>

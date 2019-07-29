@@ -61,4 +61,47 @@ class HomeController extends Controller
         return redirect()->back();
 
     }
+
+    public function addAgenda(Request $request)
+    {
+        $agenda = new Agenda;
+        $agenda->name = $request->agendaname;
+        $agenda->pic = $request->pic;
+        $agenda->contact = $request->contact;
+        $agenda->room_id = $request->selroom;
+        $agenda->datetime_start = $request->datetime_start;
+        $agenda->datetime_end = $request->datetime_end;
+        if($request->has('listrik')){
+            if($request->listrik == "on"){
+                $agenda->listrik = "1";
+            }
+        }
+
+        if($request->has('ac')){
+            if($request->ac == "on"){
+                $agenda->ac = "1";
+            }
+        }
+
+        if($request->has('proyektor')){
+            if($request->proyektor == "on"){
+                $agenda->proyektor = "1";
+            }
+        }
+        $agenda->token = rand(100000, 999999);
+        $agenda->save();
+        return redirect()->route('get.agenda');
+    }
+
+    public function deleteRoom(Request $request)
+    {
+        $room = Room::where('id', $request->id)->delete();
+        return "Oke";
+    }
+
+    public function deleteAgenda(Request $request)
+    {
+        $agenda = Agenda::where('id', $request->id)->delete();
+        return "Oke";
+    }
 }

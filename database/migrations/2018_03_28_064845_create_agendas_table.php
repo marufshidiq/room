@@ -20,8 +20,8 @@ class CreateAgendasTable extends Migration
             $table->string('pic')->nullable();
             $table->string('email')->nullable();
             $table->string('contact')->nullable();
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->dateTime('datetime_start');
+            $table->dateTime('datetime_end');
             $table->enum('listrik', ['0', '1'])->default('0');
             $table->enum('ac', ['0', '1'])->default('0');
             $table->enum('proyektor', ['0', '1'])->default('0');

@@ -22,3 +22,6 @@ Route::get('/room', 'HomeController@getRoom')->name('get.room');
 Route::get('/agenda', 'HomeController@getAgenda')->name('get.agenda');
 
 Route::post('/room', 'HomeController@addRoom')->name('post.add.room');
+Route::post('/agenda', 'HomeController@addAgenda')->name('post.add.agenda');
+Route::post('/room/delete', 'HomeController@deleteRoom')->name('post.delete.room');
+Route::post('/agenda/delete', 'HomeController@deleteAgenda')->name('post.delete.agenda');

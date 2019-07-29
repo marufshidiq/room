@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/facilities', function(Request $request){
+    $room = \App\Room::where('id', $request->id)->select('ac', 'proyektor', 'listrik')->first();
+    return $room;    
+});
