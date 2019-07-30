@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="banner">
                     <h1>IntegratedBooking<span style="color:#f0ad4e;"> ClassRoom</span> <small> | Universitas Gadjah Mada</small></h1>
-                    <h5>Sistem integrasi penggunaan ruangan di Universitas Gadjah Mada</h5>
+                    <h5>Sistem integrasi penggunaan ruangan di Departemen TEDI Sekolah Vokasi Universitas Gadjah Mada</h5>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -54,18 +54,14 @@
         <script>
         YUI({ filter: 'raw' }).use('aui-scheduler', function(Y) {
 
-        var items = [
+        var items = [                        
+            @foreach(\App\Agenda::all() as $agenda)
             {
-                content: 'Wake Early'
+                content : '[{{$agenda->room->name}}] {{$agenda->name}}',
+                startDate : new Date('{{\Carbon\Carbon::parse($agenda->datetime_start)->toW3cString()}}'),
+                endDate : new Date('{{\Carbon\Carbon::parse($agenda->datetime_end)->toW3cString()}}')
             },
-            {
-                content: 'Exercise'
-            },
-            {
-                content: 'Review or (even better) Rewrite Your Goals',
-                startDate: new Date(2013, 1, 4, 12),
-                endDate: new Date(2013, 1, 4, 16)
-            },            
+            @endforeach
         ];
 
         var schedulerViews = [
