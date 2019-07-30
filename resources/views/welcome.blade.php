@@ -52,7 +52,7 @@
         <script src="/js/bootstrap.min.js"></script>
         <script src="/build/aui/aui.js"></script>
         <script>
-        YUI({ filter: 'raw' }).use('aui-scheduler', function(Y) {
+        YUI({ filter: 'raw', lang: 'id-ID' }).use('aui-scheduler', function(Y) {
 
         var items = [                        
             @foreach(\App\Agenda::all() as $agenda)
@@ -65,10 +65,18 @@
         ];
 
         var schedulerViews = [
-            new Y.SchedulerWeekView(),
-            new Y.SchedulerDayView(),
-            new Y.SchedulerMonthView(),
-            new Y.SchedulerAgendaView()
+            new Y.SchedulerWeekView({
+                isoTime: true
+            }),
+            new Y.SchedulerDayView({
+                isoTime: true
+            }),
+            new Y.SchedulerMonthView({
+                isoTime: true
+            }),
+            new Y.SchedulerAgendaView({
+                isoTime: true
+            })
         ];
 
         new Y.Scheduler({
