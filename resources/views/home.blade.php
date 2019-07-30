@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Kegiatan Hari ini</p>
-                                    <h3 class="title">{{$todayAgenda}} agenda</h3>
+                                    <h3 class="title">{{$todayAgendaCount}} agenda</h3>
                                 </div>                                
                             </div>                            
                         </div>                    
@@ -72,6 +72,7 @@
                             </div>
                         </div>                        
                     </div>
+                    @if($todayAgendaCount>0)
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
                             <div class="card card-nav-tabs">
@@ -81,7 +82,7 @@
                                             <span class="nav-tabs-title">Ruangan:</span>
                                             <ul class="nav nav-tabs" data-tabs="tabs">
                                                 <li class="active">
-                                                    <a href="#profile" data-toggle="tab">
+                                                    <a href="#all-room" data-toggle="tab">
                                                         <i class="material-icons">pin_drop</i> Semua
                                                         <div class="ripple-container"></div>
                                                     </a>
@@ -100,10 +101,10 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="tab-content">
-                                        <div class="tab-pane active" id="profile">
+                                        <div class="tab-pane active" id="all-room">
                                             <table class="table">
                                                 <tbody>
-                                                    @foreach($allAgenda as $data)
+                                                    @foreach(\App\Agenda::whereBetween('datetime_start', [date('Y-m-d').' 00:00:00', date('Y-m-d').' 23:59:59'])->get() as $data)
                                                     <tr>
                                                         <td>
                                                             <div class="checkbox">
@@ -112,7 +113,7 @@
                                                                 </label>
                                                             </div>
                                                         </td>
-                                                        <td>{{$data['name']}} ( <b>{{$data['pic']}}</b>/{{$data['contact']}} )</td>
+                                                        <td>[{{$data->room->name}} {{date('H:i', strtotime($data['datetime_start']))}} - {{date('H:i', strtotime($data['datetime_end']))}}] {{$data['name']}} ( <b>{{$data['pic']}}</b>/{{$data['contact']}} )</td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -122,7 +123,7 @@
                                         <div class="tab-pane" id="{{$data['name']}}">
                                             <table class="table">
                                                 <tbody>
-                                                    @foreach($data->agenda as $agenda)
+                                                    @foreach($data->agenda()->whereBetween('datetime_start', [date('Y-m-d').' 00:00:00', date('Y-m-d').' 23:59:59'])->get() as $agenda)
                                                     <tr>
                                                         <td>
                                                             <div class="checkbox">
@@ -131,7 +132,7 @@
                                                                 </label>
                                                             </div>
                                                         </td>
-                                                        <td>{{$agenda['name']}} ( <b>{{$agenda['pic']}}</b>/{{$agenda['contact']}} )</td>
+                                                        <td>[{{date('H:i', strtotime($agenda['datetime_start']))}} - {{date('H:i', strtotime($agenda['datetime_end']))}}] {{$agenda['name']}} ( <b>{{$agenda['pic']}}</b>/{{$agenda['contact']}} )</td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -143,6 +144,7 @@
                             </div>
                         </div>                        
                     </div>
+                    @endif
                 </div>
             </div>
             

@@ -31,7 +31,7 @@ class HomeController extends Controller
         $agendaOfTheYear = array();
         $maxAgendaWeek = 0;
         $maxAgendaYear = 0;
-        $todayAgenda = $this->countAgenda(date('Y-m-d'));
+        $todayAgendaCount = $this->countAgenda(date('Y-m-d'));
         for($i = 0; $i<7; $i++){
             $diff = $i - $now->dayOfWeek;
             if($diff == 0){
@@ -62,7 +62,7 @@ class HomeController extends Controller
 
         $allAgenda = Agenda::all();
         $allRoom = Room::all();
-        return view('home', compact('allAgenda', 'allRoom', 'agendaOfTheWeek', 'maxAgendaWeek', 'agendaOfTheYear', 'maxAgendaYear', 'todayAgenda'));
+        return view('home', compact('allAgenda', 'allRoom', 'agendaOfTheWeek', 'maxAgendaWeek', 'agendaOfTheYear', 'maxAgendaYear', 'todayAgendaCount'));
     }
 
     public function countAgenda($start, $end="")
