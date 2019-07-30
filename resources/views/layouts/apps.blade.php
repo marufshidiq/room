@@ -49,7 +49,18 @@
                             <i class="material-icons">content_paste</i>
                             <p>Agenda</p>
                         </a>
-                    </li>                
+                    </li>
+                    <li>
+                        <a onclick="event.preventDefault();document.getElementById('tawkto-form').submit();">
+                            <i class="material-icons">message</i>
+                            <p>Pesan</p>
+                        </a>
+                    </li>     
+                    
+                    <form id="tawkto-form" action="https://dashboard.tawk.to/login" method="POST" style="display: none;">
+                        <input type="hidden" name="email" value="{{env('TAWKTO_EMAIL')}}">
+                        <input type="hidden" name="password" value="{{env('TAWKTO_PASS')}}">
+                    </form>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
