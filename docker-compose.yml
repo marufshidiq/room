@@ -17,5 +17,11 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
       - MYSQL_DATABASE=${DB_DATABASE}
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+  composer:
+    restart: 'no'
+    image: composer
+    command: install
+    volumes:
+      - .:/app
 volumes:
     db_data:
