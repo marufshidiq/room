@@ -23,9 +23,6 @@ RUN apt-get update && apt-get install -y \
       zip \
       opcache
 
-#install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
-
 #set our application folder as an environment variable
 ENV APP_HOME /var/www/html
 
@@ -37,12 +34,6 @@ RUN sed -i -e "s/html/html\/public/g" /etc/apache2/sites-enabled/000-default.con
 
 # enable apache module rewrite
 RUN a2enmod rewrite
-
-#copy source files and run composer
-COPY . $APP_HOME
-
-# install all PHP dependencies
-RUN composer install --no-interaction
 
 #change ownership of our applications
 RUN chown -R www-data:www-data $APP_HOME
