@@ -23,3 +23,4 @@ Route::post('/facilities', function(Request $request){
 });
 
 Route::post('/ip/update', 'APIController@IPUpdate');
+Route::post('/usage', 'APIController@usage');
