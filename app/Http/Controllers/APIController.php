@@ -92,11 +92,17 @@ class APIController extends Controller
         elseif ($e && $s){
             $is_valid = true;
             $status = "Sesuai jadwal";
-            array_push($access, array("listrik" => $agenda->listrik));
-            array_push($access, array("ac" => $agenda->ac));
-            array_push($access, array("proyektor" => $agenda->proyektor));
+            $access = array(
+                "listrik" => $agenda->listrik,
+                "ac" => $agenda->ac,
+                "proyektor" => $agenda->proyektor,
+                "finish" => $agenda->datetime_end
+            );
+            // array_push($access, array("listrik" => $agenda->listrik));
+            // array_push($access, array("ac" => $agenda->ac));
+            // array_push($access, array("proyektor" => $agenda->proyektor));
 
-            array_push($access, array("finish" => $agenda->datetime_end));
+            // array_push($access, array("finish" => $agenda->datetime_end));
         }
         elseif (!$e && $s){
             $status = "Jadwal agenda sudah terlewat";
