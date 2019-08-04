@@ -15,6 +15,7 @@
                         <table class="table">
                             <thead class="text-primary">
                                 <th>Nama Ruangan</th>
+                                <th>IP Address</th>
                                 <th>Listrik</th>
                                 <th>AC</th>
                                 <th>Proyektor</th>
@@ -25,6 +26,7 @@
                                 @foreach($allRoom as $data)
                                 <tr>
                                     <td>{{$data['name']}}</td>                                    
+                                    <td><a href="#" style="color:black" data-toggle="tooltip" title="{{$data['last_update']}}">{{$data['ip_address']}}</a></td>
                                         @if($data['listrik']== '1')
                                         <td class="text-primary"><i class="material-icons">check</i></td>
                                         @else
@@ -114,6 +116,10 @@
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
+    });
+
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
     });
 
     function deleteRoom(id) {

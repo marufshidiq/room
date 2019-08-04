@@ -21,3 +21,5 @@ Route::post('/facilities', function(Request $request){
     $room = \App\Room::where('id', $request->id)->select('ac', 'proyektor', 'listrik')->first();
     return $room;    
 });
+
+Route::post('/ip/update', 'APIController@IPUpdate');
