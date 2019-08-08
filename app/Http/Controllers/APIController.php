@@ -13,7 +13,7 @@ class APIController extends Controller
     {
         if (!$request->has(['key', 'ip'])) {
             return response()->json([
-                'error' => true,
+                'error' => "true",
                 'message' => 'Parameter incomplete'
             ]);
         }
@@ -21,7 +21,7 @@ class APIController extends Controller
         $room = Room::where('key', $request->key);
         if($room->count() != 1){
             return response()->json([
-                'error' => true,
+                'error' => "true",
                 'message' => 'Key not found'
             ]);
         }
@@ -31,7 +31,7 @@ class APIController extends Controller
 
         if(!$is_valid_ip){
             return response()->json([
-                'error' => true,
+                'error' => "true",
                 'message' => 'IP incorrect'
             ]);
         }
@@ -43,7 +43,8 @@ class APIController extends Controller
         ]);
 
         return response()->json([
-            'error' => false,
+            'error' => "false",
+            'name' => $room->name,
             'message' => 'Success'
         ]);
     }
@@ -52,7 +53,7 @@ class APIController extends Controller
     {
         if (!$request->has(['key', 'token'])) {
             return response()->json([
-                'error' => true,
+                'error' => "true",
                 'message' => 'Parameter incomplete'
             ]);
         }
@@ -60,7 +61,7 @@ class APIController extends Controller
         $room = Room::where('key', $request->key);
         if($room->count() != 1){
             return response()->json([
-                'error' => true,
+                'error' => "true",
                 'message' => 'Key not found'
             ]);
         }
@@ -69,7 +70,7 @@ class APIController extends Controller
         $agenda = $room->agenda->where('token', $request->token);
         if($agenda->count()!=1){
             return response()->json([
-                'error' => true,
+                'error' => "true",
                 'message' => 'Agenda not found'
             ]);
         }
@@ -87,10 +88,10 @@ class APIController extends Controller
         
         if($e && !$s){
             $status = "Belum memasuki waktu agenda yang telah ditentukan";
-            $is_valid = false;
+            $is_valid = "false";
         }
         elseif ($e && $s){
-            $is_valid = true;
+            $is_valid = "true";
             $status = "Sesuai jadwal";
             $access = array(
                 "listrik" => $agenda->listrik,
@@ -106,11 +107,12 @@ class APIController extends Controller
         }
         elseif (!$e && $s){
             $status = "Jadwal agenda sudah terlewat";
-            $is_valid = false;
+            $is_valid = "false";
         }        
 
         return response()->json([
-            'error' => false,
+            'error' => "false",
+            'agenda_name' => $agenda->name,
             'valid' => $is_valid,
             'access' => $access,
             'status' => $status
