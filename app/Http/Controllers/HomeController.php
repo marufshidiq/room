@@ -132,7 +132,9 @@ class HomeController extends Controller
                 $agenda->proyektor = "1";
             }
         }
-        $agenda->token = rand(100000, 999999);
+        $token = rand(100000, 999999);
+        $token = str_replace("1", rand(2,9), $token);
+        $agenda->token = $token;
         $agenda->save();
         return redirect()->route('get.agenda');
     }
